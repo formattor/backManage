@@ -28,7 +28,7 @@ function getUserInfo(){
         return layui.layer.msg('获取用户信息失败')
       }
       // 渲染图片
-      console.log(res);
+      // console.log(res);
       renderAvatar(res.data)
     },
     // complete:function(res){
@@ -43,10 +43,12 @@ function getUserInfo(){
 
 // 渲染图片
 function renderAvatar(user){
+  console.log(user)
+  var userPic=user.user_pic
   var name=user.nickname||user.username
   $('#welcome').html('欢迎&nbsp;&nbsp;'+ name)
-  if(user.user_pic){
-    $('.layui-nav-img').attr('src',user_pic).show()
+  if(userPic!==null){
+    $('.layui-nav-img').attr('src',userPic).show()
     $('.text_avatar').hide()
   }else{
     $('.layui-nav-img').hide()

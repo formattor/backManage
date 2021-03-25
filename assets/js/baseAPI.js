@@ -1,6 +1,6 @@
 // 调用ajax接口
 $.ajaxPrefilter(function(options){
-  console.log(options.url);
+  // console.log(options.url);
   options.url='http://ajax.frontend.itheima.net'+options.url;
   // 统一有权限的请求头设置header
   if(options.url.indexOf('/my/')!==-1){
