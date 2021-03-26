@@ -13,11 +13,28 @@
     <div class="layui-card-header">文章列表</div>
     <div class="layui-card-body">
       <!-- 筛选区域 -->
+      <form class="layui-form" id="form-search">
+        <div class="layui-form-item layui-inline">
+          <select name="cate_id">
+          </select>
+        </div>
+        <div class="layui-form-item layui-inline">
+          <select name="state">
+            <option value="">所有状态</option>
+            <option value="已发布">已发布</option>
+            <option value="草稿">草稿</option>
+          </select>
+        </div>
+        <div class="layui-form-item layui-inline">
+          <button class="layui-btn" lay-submit lay-filter="formDemo">筛选</button>
+        </div>
+      </form>
+      <!-- 列表区域 -->
       <table class="layui-table">
         <colgroup>
           <col>
           <col width="150">
-          <col width="180">
+          <col width="200">
           <col width="150">
           <col width="150">
         </colgroup>
@@ -34,8 +51,8 @@
          
         </tbody>
       </table>
-      <!-- 列表区域 -->
       <!-- 分页区域 -->
+      <div id="pageBox"></div>
     </div>
   </div>
 
@@ -45,13 +62,21 @@
     <tr>
       <td>{{$value.title}}</td>
       <td>{{$value.cate_name}}</td>
-      <td>{{$value.pub_date}}</td>
+      <td>{{$value.pub_date|dataFormat}}</td>
       <td>{{$value.state}}</td>
       <td>
         <button type="button" class="layui-btn layui-btn-xs">编辑</button>
-        <button type="button" class="layui-btn layui-btn-xs layui-btn-danger">删除</button>
+        <button type="button" class="layui-btn layui-btn-xs layui-btn-danger btn-delete" data-id="{{$value.Id}}">删除</button>
       </td>
     </tr>
+    {{/each}}
+  </script>
+
+  <!-- 分类模板引擎 -->
+  <script type="text/html" id="tpl-cate">
+    <option value="">所有种类</option>
+    {{each data}}
+    <option value="{{$value.Id}}">{{$value.name}}</option>
     {{/each}}
   </script>
 
